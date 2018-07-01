@@ -1,17 +1,19 @@
 <template>
-    <div class="main-wrapper">
-        <!-- <v-head></v-head> -->
-        <div class="left-fixed-right-auto">
-          <v-sidebar :items="menu"></v-sidebar>
-          <div class="right">
-              <div class="main-content">
-              <transition name="move" mode="out-in">
-                  <router-view></router-view>
-              </transition>
-              </div>
-          </div>
+  <div class="main-wrapper">
+    <!-- <v-head></v-head> -->
+    <div class="left-fixed-right-auto">
+      <div class="left">
+        <v-sidebar :items="menu"></v-sidebar>
+      </div>
+      <div class="right">
+        <div class="main-content">
+          <transition name="move" mode="out-in">
+            <router-view></router-view>
+          </transition>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -24,7 +26,7 @@ export default {
   data() {
     return {
       collapse: false,
-      menu:undefined
+      menu: undefined
     };
   },
   components: {
@@ -48,7 +50,7 @@ export default {
       return false;
       // 通过 `vm` 访问组件实例
       console.log(vm);
-      dataPromise.getMenu().then(function(res) {
+      dataPromise.getMenu().then(function (res) {
         // console.log(res)
         if (res && res.data && res.data.code === 1) {
           var menu = res.data.data.menu;
@@ -78,18 +80,4 @@ export default {
 };
 </script>
 
-<style>
-.main-wrapper{
-  height: 100%;
-    width: 100%;
-}
-.left-fixed-right-auto{
-  display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    height: 100%;
-    -webkit-box-align: stretch;
-    -ms-flex-align: stretch;
-    align-items: stretch;
-}
-</style>
+

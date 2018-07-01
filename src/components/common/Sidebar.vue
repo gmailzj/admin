@@ -1,38 +1,38 @@
 <template>
-    <div class="left-menu">
-      <h2 data-v-326546e8="">Zan Proxy</h2>
-        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" unique-opened router>
-            <template v-for="item in items">
-                <template v-if="item.subs">
-                    <el-submenu :index="item.index" :key="item.index">
-                        <template slot="title">
-                            <i class="iconfont" :class="item.icon"></i>
-                            <span slot="title">{{ item.name }}</span>
-                        </template>
-                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
-                            {{ subItem.name }}
-                        </el-menu-item>
-                    </el-submenu>
-                </template>
-                <template v-else>
-                    <el-menu-item :index="item.index" :key="item.index">
-                        <i class="iconfont" :class="item.icon"></i>
-                        <span slot="title">{{ item.name }}</span>
-                    </el-menu-item>
-                </template>
+  <div class="left-menu">
+    <h2 data-v-326546e8="">Admin UI</h2>
+    <el-menu class="el-menu-vertical-demo" theme="dark" :default-active="onRoutes" :collapse="collapse" unique-opened router>
+      <template v-for="item in items">
+        <template v-if="item.subs">
+          <el-submenu :index="item.index" :key="item.index">
+            <template slot="title">
+              <i class="iconfont" :class="item.icon"></i>
+              <span slot="title">{{ item.name }}</span>
             </template>
-        </el-menu>
-    </div>
+            <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
+              {{ subItem.name }}
+            </el-menu-item>
+          </el-submenu>
+        </template>
+        <template v-else>
+          <el-menu-item :index="item.index" :key="item.index">
+            <i class="iconfont" :class="item.icon"></i>
+            <span slot="title">{{ item.name }}</span>
+          </el-menu-item>
+        </template>
+      </template>
+    </el-menu>
+  </div>
 </template>
 
 <script>
 import bus from "../common/bus";
 export default {
   props: {
-    "items":{
-    default: function () {
+    "items": {
+      default: function () {
 
-      return [{
+        return [{
           name: '使用说明',
           icon: 'icon-search',
           index: 'home'
@@ -93,8 +93,8 @@ export default {
             }
           ]
         }];
-    }
-  }},
+      }
+    }  },
 
   data() {
     return {
@@ -107,7 +107,7 @@ export default {
       return this.$route.path.replace("/", "");
     },
     // 计算属性的 getter
-    reversedMessage: function() {
+    reversedMessage: function () {
       // `this` 指向 vm 实例
       return this.message
         .split("")
@@ -129,8 +129,17 @@ export default {
   methods: {}
 };
 </script>
+<style>
+.el-menu{
+  background-color: transparent;
+}
+.el-submenu__title:hover {
+    background-color: #393c89;
+    color: #fff;
+}
+</style>
 
-<style scoped>
+<style lang="postcss" scoped>
 .left-menu {
   z-index: 1;
   width: 230px;
@@ -169,13 +178,15 @@ export default {
     background-color: transparent;
   }
 
-  .el-submenu__title,
   .el-menu-item {
     color: #fff;
     height: 52px;
     line-height: 52px;
     border-left: 3px solid transparent;
-
+    i {
+      color: #fff;
+    }
+    ,
     &.is-active,
     &:hover {
       background-color: #393c89;
@@ -183,6 +194,19 @@ export default {
 
     &.is-active {
       border-color: #32e7d7;
+    }
+  }
+
+  .el-submenu {
+    color: #fff;
+
+    .el-submenu__title {
+      span , i {
+        color: #fff;
+      }
+    }
+    .el-menu{
+
     }
   }
 }
