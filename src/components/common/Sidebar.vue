@@ -1,7 +1,7 @@
 <template>
   <div class="left-menu">
     <h2 data-v-326546e8="">Admin UI</h2>
-    <el-menu class="el-menu-vertical-demo" theme="dark" :default-active="onRoutes" :collapse="collapse" unique-opened router>
+    <el-menu class="el-menu-vertical-demo" :default-active="onRoutes" :collapse="collapse" unique-opened router>
       <template v-for="item in items">
         <template v-if="item.subs">
           <el-submenu :index="item.index" :key="item.index">
@@ -176,6 +176,7 @@ export default {
 
   .el-menu {
     background-color: transparent;
+    border-right:none;
   }
 
   .el-menu-item {

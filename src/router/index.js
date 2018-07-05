@@ -21,6 +21,12 @@ export default new Router({
             require(["../components/common/Readme.vue"], resolve)
         }
       ]
+    },
+    {
+      path: "/login",
+      component: resolve => {
+        return require(["../components/page/Login.vue"], resolve);
+      }
     }
   ]
 });

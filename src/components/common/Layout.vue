@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <!-- <v-head></v-head> -->
+    <v-head></v-head>
     <div class="left-fixed-right-auto">
       <div class="left">
         <v-sidebar :items="menu"></v-sidebar>
