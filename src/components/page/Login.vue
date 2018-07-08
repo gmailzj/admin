@@ -80,19 +80,19 @@ export default {
           };
           axios({
             method: "POST",
-            url: "login/get_access_token",
+            url: "login",
             data: data
             // params 请求里面的url参数
           })
             .then(function (response) {
               console.log(response);
-              if (response.data.code === 1) {
+              if (response.data.code === 0) {
                 localStorage.setItem("ms_username", self.ruleForm.username);
-                let accessToken = response.data.data.accessToken;
+                let accessToken = response.data.accessToken;
                 // 得到access_token
                 // debugger;
                 cookieToken.setCookieToken(accessToken, 24 * 30);
-                self.$router.push("/readme");
+                self.$router.push("/home");
               } else {
                 // 密码不正确
                 self.$message.error("密码错误");

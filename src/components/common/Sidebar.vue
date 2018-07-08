@@ -33,55 +33,18 @@ export default {
       default: function () {
 
         return [{
-          name: '使用说明',
+          name: '首页',
           icon: 'icon-search',
           index: 'home'
         },
         {
-          name: '工程路径配置',
-          icon: 'icon-layers',
-          index: 'projectpath'
-        },
-        {
-          name: 'Host 管理',
-          icon: 'icon-box',
-          index: 'hostfilelist'
-        },
-        {
-          name: 'Http 转发',
-          icon: 'icon-skip',
-          index: 'rulefilelist'
-        },
-        {
-          name: '自定义 mock 数据',
-          icon: 'icon-suoding',
-          index: 'datalist'
-        },
-        {
-          name: '请求监控',
-          icon: 'icon-bargraph',
-          index: '/monitor.html',
-          targetBlank: true
-        },
-        {
-          name: '帮助中心',
-          icon: 'icon-security',
-          index: 'https://youzan.github.io/zan-proxy/',
-          targetBlank: true
-        },
-        {
-          name: '插件管理',
-          icon: 'icon-layers',
-          index: 'plugins'
-        },
-        {
           icon: "el-icon-setting",
           index: "5",
-          name: "系统管理",
+          name: "用户管理",
           subs: [
             {
-              index: "log",
-              name: "操作日志"
+              index: "userlist",
+              name: "用户管理"
             },
             {
               index: "admin",

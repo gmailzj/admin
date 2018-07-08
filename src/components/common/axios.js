@@ -4,8 +4,8 @@ import Vue from "vue";
 import router from "../../router";
 
 const service = axios.create({
-  baseURL: "http://eshopadmin2.changxianapp.com/v1",
-  timeout: 5e3,
+  baseURL: "/api",
+  timeout: 10e3,
   withCredentials: true
 });
 // 发送请求前处理request的数据

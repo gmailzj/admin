@@ -19,6 +19,11 @@ export default new Router({
           path: "/",
           component: resolve =>
             require(["../components/common/Readme.vue"], resolve)
+        },
+        {
+          path: "/userlist",
+          component: resolve =>
+            require(["../components/page/UserList.vue"], resolve)
         }
       ]
     },
