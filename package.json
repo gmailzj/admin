@@ -18,6 +18,7 @@
     "babel-polyfill": "^6.26.0",
     "element-ui": "^2.4.2",
     "qrcode-js": "0.0.2",
+    "qs": "^6.5.2",
     "vue": "^2.5.2",
     "vue-data-center": "^1.0.6",
     "vue-lazyload": "^1.2.6",

@@ -1,11 +1,11 @@
 <template>
   <div class="login-wrap">
-    <div class="ms-title">后台管理系统</div>
+    <div class="ms-title">CMS管理系统</div>
     <!-- <div> -->
-      <!-- `vm.$refs.p` will be the DOM node -->
-      <!-- <p ref="p">hello</p> -->
-      <!-- `vm.$refs.child` will be the child component instance -->
-      <!-- <child-component ref="child"></child-component> -->
+    <!-- `vm.$refs.p` will be the DOM node -->
+    <!-- <p ref="p">hello</p> -->
+    <!-- `vm.$refs.child` will be the child component instance -->
+    <!-- <child-component ref="child"></child-component> -->
     <!-- </div> -->
     <div class="ms-login">
 
@@ -59,13 +59,11 @@ export default {
           trigger: "blur"
         }]
       },
-      sentence: [
-        "我有所念人,隔在远远乡！",
-        "乡远去不得，无日不瞻望"
-      ][Math.floor(Math.random() * 2)]
+      sentence: []
     };
   },
   methods: {
+
     submitForm(formName) {
       // 表单validate成功
       var self = this;
@@ -75,7 +73,7 @@ export default {
           // 开始请求服务端API
           var axios = self.$axios;
           var data = {
-            username: self.ruleForm.username,
+            account: self.ruleForm.username,
             password: self.ruleForm.password
           };
           axios({
@@ -86,16 +84,16 @@ export default {
           })
             .then(function (response) {
               console.log(response);
-              if (response.data.code === 0) {
+              if (response.data.code === 200) {
                 localStorage.setItem("ms_username", self.ruleForm.username);
-                let accessToken = response.data.accessToken;
+                let accessToken = response.data.data.t;
                 // 得到access_token
                 // debugger;
                 cookieToken.setCookieToken(accessToken, 24 * 30);
                 self.$router.push("/home");
               } else {
                 // 密码不正确
-                self.$message.error("密码错误");
+                self.$message.error("账号或密码错误");
               }
             })
             .catch(function (error) {
@@ -109,7 +107,10 @@ export default {
         }
       });
     }
-  }
+  },
+  created: function () {
+    // this.$message.success("账号或密码错误");
+  },
 };
 
 </script>

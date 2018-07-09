@@ -3,6 +3,10 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
+
+const NotFoundComponent = resolve =>
+  require(["@/components/common/NotFoundComponent"], resolve);
+
 export default new Router({
   routes: [
     {
@@ -24,6 +28,21 @@ export default new Router({
           path: "/userlist",
           component: resolve =>
             require(["../components/page/UserList.vue"], resolve)
+        },
+        {
+          path: "/certify",
+          component: resolve =>
+            require(["../components/page/Certify.vue"], resolve)
+        },
+        {
+          path: "/user/:id",
+          component: resolve =>
+            require(["../components/page/User.vue"], resolve)
+        },
+        {
+          path: "/test",
+          component: resolve =>
+            require(["../components/page/Test.vue"], resolve)
         }
       ]
     },
@@ -32,6 +51,7 @@ export default new Router({
       component: resolve => {
         return require(["../components/page/Login.vue"], resolve);
       }
-    }
+    },
+    { path: "*", component: NotFoundComponent }
   ]
 });

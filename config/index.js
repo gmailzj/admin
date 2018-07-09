@@ -10,12 +10,19 @@ module.exports = {
     assetsSubDirectory: "static",
     assetsPublicPath: "/",
     proxyTable: {
-      "/api": {
+      "/api2": {
         target: "https://easy-mock.com/mock/5b4210ba06d41d27e98fb5e3/api/",
         changeOrigin: true,
         pathRewrite: {
           "/api": ""
-      }
+        }
+      },
+      "/api": {
+        target: "http://54.178.139.237:39002/api/",
+        changeOrigin: true,
+        pathRewrite: {
+          "/api": ""
+        }
       }
     },
 

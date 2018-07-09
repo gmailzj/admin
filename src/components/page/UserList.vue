@@ -1,4 +1,3 @@
-
 <template>
   <div class="table">
     <div class="crumbs">
@@ -9,12 +8,10 @@
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-input v-model="listQuery.filterValue" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+        <el-input v-model="listQuery.filterValue" placeholder="搜索ID、昵称、手机号码" class="handle-input mr10"></el-input>
         <el-button type="primary" icon="search" @click="search">搜索</el-button>
       </div>
       <el-table :data="tableData" border style="width: 100%" ref="multipleTable">
-        <el-table-column fixed prop="date" label="日期" width="150">
-        </el-table-column>
         <el-table-column prop="name" label="姓名" width="120">
         </el-table-column>
         <el-table-column prop="province" label="省份" width="120">
@@ -37,87 +34,102 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    handleClick(row) {
-      console.log(row);
-    },
-    search: function () {
-      this.isSearch = 1;
-      this.getData()
-    },
-    getData: function () {
-
-    },
-  },
-
-  data() {
-    return {
-      isSearch: 0,
-      listQuery: {
-        page: 1,
-        limit: 10,
-        filterValue: ""
+  export default {
+    methods: {
+      handleClick(row) {
+        console.log(row);
       },
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }]
+      search: function () {
+        this.isSearch = 1;
+        this.getData()
+      },
+      getData: function () {
+
+      },
+      created: function () {
+        this.getData()
+      },
+    },
+
+    data() {
+      return {
+        isSearch: 0,
+        listQuery: {
+          page: 1,
+          limit: 10,
+          filterValue: ""
+        },
+        tableData: [{
+          id:1,
+          date: '2016-05-03',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          id:1,
+          date: '2016-05-02',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          id:1,
+          date: '2016-05-04',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          id:1,
+          date: '2016-05-01',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }]
+      }
     }
   }
-}
 </script>
 <style scoped>
-.handle-box {
-  margin-bottom: 20px;
-}
+  .handle-box {
+    margin-bottom: 20px;
+  }
 
-.handle-select {
-  width: 120px;
-}
+  .handle-select {
+    width: 120px;
+  }
 
-.handle-input {
-  width: 300px;
-  display: inline-block;
-}
+  .handle-input {
+    width: 300px;
+    display: inline-block;
+  }
 
-.demo-table-expand {
-  font-size: 0;
-}
+  .demo-table-expand {
+    font-size: 0;
+  }
 
-.demo-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 50%;
-}
+  .demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 50%;
+  }
 
-.demo-table-expand .el-form-item label {
-  width: 90px;
-  color: #99a9bf !important;
-}
+  .demo-table-expand .el-form-item label {
+    width: 90px;
+    color: #99a9bf !important;
+  }
+
+  .el-table .warning-row {
+    background: oldlace;
+  }
+
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
 </style>

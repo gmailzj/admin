@@ -7,7 +7,7 @@
           <img class="user-logo" src="../../../static/img/img.jpg"> {{username}}
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="change_password">修改密码</el-dropdown-item>
+          <!-- <el-dropdown-item command="change_password">修改密码</el-dropdown-item> -->
           <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -110,8 +110,8 @@ export default {
   methods: {
     handleCommand(command) {
       if (command == "loginout") {
-        localStorage.removeItem("username");
-        // this.$router.push("/login");
+        localStorage.removeItem("ms_username");
+        this.$router.push("/login");
       } else if (command == "change_password") {
         this.password.visible = !0;
         this.$refs.password && this.$refs.password.resetFields();

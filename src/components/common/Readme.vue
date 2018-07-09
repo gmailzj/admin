@@ -1,108 +1,130 @@
 <template>
-  <div class="install-body">
-    <h2 id="toc_0">一、说明</h2>
-
-    <p>由于<code>zanProxy</code>默认不修改系统代理设置，所以在 chrome 上使用代理功能时需要依赖第三方 chrome 插件。</p>
-    <p><code>zanProxy</code>依赖 openssl 生成证书，使用 proxy 前请先安装 openssl (版本建议在 0.9.8 以上)。</p>
-
-    <h2 id="toc_1">二、chrome 插件安装</h2>
-
+  <div>
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/' }">
+          <i class="el-icon-tickets"></i> 首页</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="ms-doc">
+      <section class="data_section">
+        <el-row :gutter="20" style="margin-bottom: 10px;">
+          <el-col :span="4">
+            <div class="data_list today_head">
+              <span class="data_num head">数据统计：</span>
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="data_list">
+              用户总数:
+              <span class="data_num">{{totalUserCount}}</span>
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="data_list">
+              今日登录:
+              <span class="data_num">{{todayLogin}}</span>
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="data_list">
+              今日新增:
+              <span class="data_num">{{todayNewUser}}</span>
+            </div>
+          </el-col>
+        </el-row>
+      </section>
+    </div>
   </div>
 
 </template>
 
 <script>
-import qrcode from "qrcode-js";
-
-export default {
-  name: "app",
-  data() {
-    var certUrl =
-      "http://" +
-      location.hostname +
-      ":" +
-      (location.port || 80) +
-      "/utils/rootCA.crt";
-    return {
-      url: certUrl,
-      imgUrl: qrcode.toDataURL(certUrl, 4)
-    };
-  }
-};
+  export default {
+    name: "app",
+    data() {
+      return {
+        totalUserCount: 0,
+        todayLogin: 0,
+        todayNewUser: 0
+      };
+    }
+  };
 </script>
 
-<style>
-.install-body {
-  margin: -50px;
-  padding: 50px;
-  font-size: 14px;
-  line-height: 1.8;
-  background-color: #fff;
-
-  &__qrcode {
-    display: block;
-    margin-left: -15px;
+<style scoped>
+  .allcover {
+    position: absolute;
+    top: 0;
+    right: 0
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-weight: 400;
-    margin: 20px 0 10px;
-    color: rgba(51, 51, 51, 0.9);
+  .ctt {
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
   }
 
-  h1 {
-    margin: 0;
-    font-size: 32px;
-    font-family: Dosis, Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+  .ctt,
+  .tb {
+    position: absolute;
+    top: 50%
   }
 
-  h2 {
-    color: #333;
-    font-size: 24px;
-    margin-top: 30px;
-
-    &:first-of-type {
-      margin-top: 10px;
-    }
+  .tb {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
   }
 
-  h4 {
-    font-size: 18px;
+  .lr {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
   }
 
-  code {
-    margin: 2px;
-    color: #455a64;
-    padding: 2px 7px;
-    font-size: 13px;
-    overflow-x: auto;
-    font-weight: 400;
-    line-height: 22px;
-    border-radius: 3px;
-    margin-bottom: 25px;
-    position: relative;
-    word-break: break-all;
-    white-space: pre-wrap;
-    background-color: #f5f7fa;
-    font-family: Source Code Pro, Monaco, Inconsolata, monospace;
+  .data_section {
+    padding: 20px;
+    margin-bottom: 40px
   }
 
-  ol {
-    padding-left: 20px;
+  .data_section .section_title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px
   }
 
-  a {
-    color: #3498db;
-    text-decoration: none;
-  }
-
-  .quick-start {
+  .data_section .data_list {
+    text-align: center;
     font-size: 14px;
-    margin-left: 15px;
+    color: #666;
+    border-radius: 6px;
+    background: #e5e9f2
   }
-}
+
+  .data_section .data_list .data_num {
+    color: #333;
+    font-size: 26px
+  }
+
+  .data_section .data_list .head {
+    border-radius: 6px;
+    font-size: 22px;
+    padding: 4px 0;
+    color: #fff;
+    display: inline-block
+  }
+
+  .data_section .today_head {
+    background: #ff9800
+  }
+
+  .data_section .all_head {
+    background: #20a0ff
+  }
+
+  .wan {
+    font-size: 16px;
+    color: #333
+  }
 </style>

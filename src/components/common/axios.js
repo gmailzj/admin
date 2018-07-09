@@ -2,11 +2,14 @@ import axios from "axios";
 // import ElementUI from "element-ui";
 import Vue from "vue";
 import router from "../../router";
+import qs from 'qs';
+import configData from "@/configs/index";
+import { t as cookieToken } from "@/components/common/CookieToken";
 
 const service = axios.create({
-  baseURL: "/api",
+  baseURL: configData.apiPrefix,
   timeout: 10e3,
-  withCredentials: true
+  withCredentials: true,
 });
 // 发送请求前处理request的数据
 axios.defaults.transformRequest = [
@@ -26,15 +29,19 @@ service.interceptors.request.use(
   //     // 发送请求之前，要做的业务
   //     return config;
   // },
-  function(e) {
-    return (
-      "post" === e.method &&
-        ((e.headers = {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        }),
-        (e.data = JSON.stringify(e.data))),
-      e
-    );
+  function(config) {
+    var  token = cookieToken.getCookieToken();
+    if ("post" === config.method) {
+      config.headers = {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      };
+      if((token)){
+        config.headers.token = token;
+      }
+      // config.data = JSON.stringify(config.data);
+      config.data && (config.data = qs.stringify(config.data));
+    }
+    return config;
   },
   error => {
     // 错误处理代码
@@ -50,13 +57,9 @@ service.interceptors.response.use(
   //     return response;
   // },
   function(e) {
+    console.log(e.data);
     var t = e.data;
-    if (
-      50001 === t.errcode ||
-      50008 === t.errcode ||
-      50012 === t.errcode ||
-      50014 === t.errcode
-    ) {
+    if (501 === t.code) {
       // Vue.prototype
       Vue.prototype
         .$confirm("请重新登录！", {
@@ -68,9 +71,9 @@ service.interceptors.response.use(
           router.push("/login");
         });
     } else {
-      if (1e4 !== t.errcode) return e;
+      if (1e4 !== t.code) return e;
       Vue.prototype.$Message({
-        message: t.desc,
+        message: t.msg,
         type: "warning"
       });
     }

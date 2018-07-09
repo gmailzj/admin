@@ -1,19 +1,17 @@
 // "use strict";
 
-import u from "./CookieUtil";
-console.log(u);
+import CookieUtil from "./CookieUtil";
 var c = "access_token";
 
 export var t = {};
 function getCookieToken() {
-    return u.get(c);
+    return CookieUtil.get(c);
 }
 function setCookieToken(value, hours) {
-    console.log(u);
-    return u.set(c, value, hours);
+    return CookieUtil.set(c, value, hours);
 }
 function removeCookieToken() {
-    return u.remove(c);
+    return CookieUtil.remove(c);
 }
 
 t.getCookieToken = getCookieToken;

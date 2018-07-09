@@ -88,47 +88,6 @@ body {
     border: none;
     background-color: #ff4949;
   }
-
-  .el-table {
-    border: none;
-    background-color: transparent;
-
-    &__body-wrapper {
-      table {
-        border-spacing: 0 8px;
-      }
-    }
-
-    & &__row {
-      color: #455a64;
-
-      &:hover {
-        > td {
-          background-color: #fff;
-        }
-      }
-
-      td:first-of-type {
-        color: #4b5265;
-        font-weight: bold;
-      }
-    }
-
-    &::before,
-    &::after {
-      display: none;
-    }
-
-    th.is-leaf,
-    td {
-      border: none;
-    }
-
-    .cell {
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-  }
 }
 
 .monitor-wrap {
@@ -157,6 +116,10 @@ body {
   border-bottom: none;
 }
 
-.crumbs{
+.crumbs {
   margin-bottom: 20px;
+}
+.pagination {
+  margin: 20px 0;
+  text-align: right;
 }

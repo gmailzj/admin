@@ -20,7 +20,6 @@
 import vHead from "./Header.vue";
 import vSidebar from "./Sidebar.vue";
 import bus from "../common/bus";
-import dataPromise from "@/components/common/DataPromise";
 
 export default {
   data() {
@@ -39,30 +38,17 @@ export default {
     });
   },
   /**
-            每个守卫方法接收三个参数：
-            to: Route: 即将要进入的目标 路由对象
-            from: Route: 当前导航正要离开的路由
-            next: Function: 一定要调用该方法来 resolve 这个钩子。 执行效果依赖 next 方法的调用参数。
-        **/
+      每个守卫方法接收三个参数：
+      to: Route: 即将要进入的目标 路由对象
+      from: Route: 当前导航正要离开的路由
+      next: Function: 一定要调用该方法来 resolve 这个钩子。 执行效果依赖 next 方法的调用参数。
+  **/
   beforeRouteEnter(to, from, next) {
     console.log("Home.vue: beforeRouteEnter");
     next(vm => {
-      return false;
-      // 通过 `vm` 访问组件实例
-      console.log(vm);
-      dataPromise.getMenu().then(function (res) {
-        // console.log(res)
-        if (res && res.data && res.data.code === 1) {
-          var menu = res.data.data.menu;
-          var userInfo = res.data.data.user_info;
-          console.log(menu, userInfo);
-          vm.menu = menu;
-        } else {
-          vm.$router.replace({
-            path: "/login"
-          });
-        }
-      });
+      const username = localStorage.getItem("ms_username");
+      username ? next() : next("/login");
+
     });
   },
   beforeRouteUpdate(to, from, next) {
