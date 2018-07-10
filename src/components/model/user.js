@@ -9,7 +9,15 @@ function getCertifyList(data) {
     data: data,
   });
 }
+function setCertify(data, id){
+  return axios({
+    url: "auth/"+id,
+    method: "POST",
+    data: data,
+  });
+}
 
 e.getCertifyList = getCertifyList;
+e.setCertify = setCertify;
 
 export default e;
