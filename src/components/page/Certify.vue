@@ -22,7 +22,7 @@
             {{scope.row.idType|getIdTypeTxt}}
           </template>
         </el-table-column>
-        <el-table-column prop="identity" label="公民身份号码或护照号码" width="180">
+        <el-table-column prop="identity" label="证件号码" width="180">
         </el-table-column>
         <el-table-column prop="idFrontOutUrl" label="证件照片" width="80" align="center">
           <template slot-scope="scope">

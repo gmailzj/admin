@@ -8,7 +8,7 @@ import DataCenter from "vue-data-center";
 import ElementUI from "element-ui";
 import axios from "@/components/common/axios";
 
-import "./iconfont.css";
+// import "./iconfont.css";
 import "./index.pcss";
 import "element-ui/lib/theme-chalk/index.css"; // 默认主题
 
