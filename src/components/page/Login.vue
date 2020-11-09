@@ -30,7 +30,9 @@
 import {
   t as cookieToken
 } from "@/components/common/CookieToken";
-
+import configData from "@/configs/index";
+var environment = configData.environment;
+console.log(environment);
 export default {
   data: function () {
     var validateUsername = (rule, value, callback) => {
